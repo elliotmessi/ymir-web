@@ -5,7 +5,7 @@ import storage from '@/utils/storage'
 import t from '@/utils/t'
 
 const typeFormat = {
-  jpg: ['image/jpeg', 'image/png', 'image/gif'],
+  jpg: ['image/jpeg', 'image/png', 'image/gif', 'image/bmp'],
   zip: ['application/zip'],
   doc: ['application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'application/pdf'],
 }
