@@ -49,14 +49,16 @@ function Info({ getUserInfo, user }) {
     <div className={s.info}>
       <Breadcrumbs />
       <Card className={s.container} title={t('breadcrumbs.user.info')}>
-        <div className={s.content}>
+        <Row className={s.content} justify='center'>
+          <Col lg={12} xl={{ offset: -6, span: 12 }}>
           <Row className={s.avatarContent} align='middle' justify='center'>
             <Col className={s.avatar}>
               { user.avatar ? <img src={user.avatar} /> : <UserIcon style={{ color: '#fff', fontSize: 80 }} />}
             </Col>
           </Row>
           <List dataSource={infoList} renderItem={renderItem}></List>
-        </div>
+          </Col>
+        </Row>
       </Card>
     </div>
   )
