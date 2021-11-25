@@ -18,7 +18,6 @@ const model = {
   namespace: "user",
   state: {
     username: "",
-    password: "",
     email: "",
     phone: "",
     id: 0,
@@ -73,7 +72,7 @@ const model = {
     },
     *getUserInfo({ payload }, { call, put, select }) {
       const user = yield select(({ user }) => user)
-      if (user.id) {
+      if (!payload && user.id) {
         return user
       }
       const { result } = yield call(getMeInfo)

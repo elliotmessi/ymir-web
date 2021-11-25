@@ -16,6 +16,7 @@ import './menu.less'
 import logo from '@/assets/logo_a.png'
 import { NavHomeIcon, NavTaskIcon, NavModelmanageIcon, NavDatasetIcon, ArrowDownIcon } from '@/components/common/icons'
 import GuideStep from "../guide/step"
+import { GithubIcon, UserIcon } from "../common/icons"
 
 const { SubMenu } = Menu
 
@@ -123,9 +124,14 @@ function HeaderNav({ simple = false, username, loginout }) {
 
   const menu = (
     <Menu className={styles.popMenu}>
-      <Menu.Item key="logout" onClick={out}>
-        <LogoutOutlined />&nbsp;&nbsp;
-        {t('common.top.menu.logout')}
+      <Menu.Item onClick={() => history.push('/home/user')}>
+        <UserIcon /> {t('common.top.menu.user')}
+      </Menu.Item>
+      <Menu.Item>
+        <a target="_blank" href='https://github.com/IndustryEssentials/ymir'><GithubIcon /> {t('common.top.menu.community')}</a>
+      </Menu.Item>
+      <Menu.Item onClick={out}>
+        <LogoutOutlined /> {t('common.top.menu.logout')}
       </Menu.Item>
     </Menu>
   )
