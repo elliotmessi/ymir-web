@@ -9,8 +9,9 @@ import {
   resetPwd,
   forgetPwd,
   getMeInfo,
+  updateUserInfo,
   signup,
-} from "@/services/Auth"
+} from "@/services/user"
 
 const neverShow = storage.get("never_show")
 
@@ -20,6 +21,7 @@ const model = {
     username: "",
     email: "",
     phone: "",
+    avatar: '',
     id: 0,
     logined: !!storage.get("access_token"),
     neverShow,
@@ -84,6 +86,16 @@ const model = {
         return result
       }
     },
+    *updateUserInfo({ payload }, { call, put, select }) {
+      const { result } = yield call(updateUserInfo, payload)
+      if (result) {
+        yield put({
+          type: "UPDATE_USERINFO",
+          payload: result,
+        })
+        return result
+      }
+    },
     *loginout({ payload }, { call, put, select }) {
       storage.remove("access_token")
       yield put({ type: "UPDATE_LOGINED", payload: false })
@@ -103,6 +115,7 @@ const model = {
         username: payload.username,
         email: payload.email,
         phone: payload.phone,
+        avatar: payload.avatar,
         id: payload.id,
       }
     },
