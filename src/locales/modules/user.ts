@@ -21,6 +21,16 @@ const user = {
   "user.info.list.phone": { cn: "手机号码", en: "Phone", },
   "user.info.list.password": { cn: "账户密码", en: "Password", },
   "user.info.list.permission": { cn: "用户权限", en: "Permission", },
+  "user.info.username.success": { cn: "用户名称修改成功", en: "Username updated", },
+  "user.info.avatar.success": { cn: "头像上传成功", en: "Avatar updated", },
+  "user.info.avatar.failure": { cn: "头像上传失败", en: "Avatar upload failure", },
+  "user.info.avatar.empty": { cn: "上传头像文件为空", en: "Empty avatar", },
+  "user.info.phone.success": { cn: "手机号码修改成功", en: "Phone number updated", },
+  "user.info.pwd.success": { cn: "密码修改成功", en: "Password updated", },
+  "user.info.avatar.tip": { cn: "支持图片格式：jpg, gif, png", en: "Support images: *.jpg, *.gif, *.png", },
+  "user.info.pwd.form.old": { cn: "请输入旧密码", en: "Please input your current password", },
+  "user.info.pwd.form.new": { cn: "请输入新密码", en: "Please input a new password", },
+  "user.info.pwd.form.renew": { cn: "请重新输入新密码", en: "Please confirm your new password", },
 }
 
 export default user

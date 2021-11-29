@@ -142,7 +142,14 @@
       height: 100px;
       background: rgba(0, 0, 0, 0.15);
       border-radius: 200px;
-      line-height: 132px;
+      overflow: hidden;
+      :global(.anticon) {
+        line-height: 146px;
+      }
+      img {
+        display: block;
+        width: 100px;
+      }
     }
   }
 }

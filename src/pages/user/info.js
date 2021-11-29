@@ -58,7 +58,7 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
       const result = await updateUserInfo({ username })
       if (result) {
         setUsernameModify(false)
-        message.success(t('用户名称修改成功'))
+        message.success(t('user.info.username.success'))
       }
     })
   }
@@ -68,12 +68,12 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
     if (url) {
       const result = await updateUserInfo({ avatar: url })
       if (result) {
-        message.success('头像上传成功')
+        message.success('user.info.avatar.success')
       } else {
-        message.error('头像上传失败')
+        message.error('user.info.avatar.failure')
       }
     } else {
-      message.error('上传文件为空')
+      message.error('user.info.avatar.empty')
     }
   }
   const onPhoneOk = () => {
@@ -82,7 +82,7 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
       const result = await updateUserInfo({ phone })
       if (result) {
         setPhoneModify(false)
-        message.success(t('手机号码修改成功'))
+        message.success(t('user.info.phone.success'))
       }
     })
   }
@@ -94,7 +94,7 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
         const result = await updateUserInfo({ password })
         if (result) {
           setPasswordModify(false)
-          message.success(t('密码修改成功'))
+          message.success(t('user.info.pwd.success'))
         }
       }
     })
@@ -143,7 +143,7 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
                   format='img'
                   crop={true}
                   max={20}
-                  info={t('支持图片格式：jpg, gif, png')}
+                  info={t('user.info.avatar.tip')}
                 ></Uploader>
               </Col>
             </Row>
@@ -200,7 +200,7 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
           <Form.Item
             name="old_password"
           >
-            <Input.Password allowClear placeholder={t('请输入旧密码')} />
+            <Input.Password allowClear placeholder={t('user.info.pwd.form.old')} />
           </Form.Item>
           <Form.Item
             name="password"
@@ -209,7 +209,7 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
               { type: 'string', min: 8, max: 16, message: t("signup.pwd.length.msg", { min: 8, max: 16 }), },
             ]}
           >
-            <Input.Password allowClear placeholder={t('请输入新密码')} />
+            <Input.Password allowClear placeholder={t('user.info.pwd.form.new')} />
           </Form.Item>
           <Form.Item
             name="repwd"
@@ -219,20 +219,9 @@ function Info({ getUserInfo, user, updateUserInfo, validatePwd }) {
               pwdRepeat,
             ]}
           >
-            <Input.Password allowClear placeholder={t('请重新输入新密码')} />
+            <Input.Password allowClear placeholder={t('user.info.pwd.form.renew')} />
           </Form.Item>
         </Form>
-      </Modal>
-      <Modal title={'avatarModify'} visible={avatarModify} onCancel={onAvatarCancel} onOk={onAvatarOk} width={1000}>
-        <Row gutter={20}>
-          <Col className={s.upload} flex={1}></Col>
-          <Col className={s.preview} flex={'130px'}>
-            <p>{t('头像预览：')}</p>
-            <div>
-            
-            </div>
-          </Col>
-        </Row>
       </Modal>
     </div>
   )

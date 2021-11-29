@@ -88,7 +88,7 @@ function getParantPath(path) {
   return path.replace(/^(\/home\/[^\/]+).*/, "$1")
 }
 
-function HeaderNav({ simple = false, username, loginout }) {
+function HeaderNav({ simple = false, username, loginout, avatar }) {
   // const location = useLocation()
   const [defaultKeys, setDefaultKeys] = useState(null)
   const location = useLocation()
@@ -211,7 +211,7 @@ function HeaderNav({ simple = false, username, loginout }) {
             </Popover>
             <Dropdown overlay={menu} placement="bottomRight">
               <div className={styles.user}>
-                <span className={styles.avatar}>{(username || 'Y').charAt(0).toUpperCase()}</span>
+                <span className={styles.avatar}>{avatar ? <img src={avatar} /> : (username || 'Y').charAt(0).toUpperCase()}</span>
                 <span>{username}</span>
                 <ArrowDownIcon />
               </div>
@@ -229,6 +229,7 @@ const mapStateToProps = (state) => {
   return {
     logined: state.user.logined,
     username: state.user.username,
+    avatar: state.user.avatar,
     current: state.watchRoute.current,
   }
 }
