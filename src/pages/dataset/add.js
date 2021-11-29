@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Card, Form, Input, message, Radio, Row, Col, Select, Space, Tag } from 'antd'
 import { connect } from 'dva'
-import { Link, useParams } from 'umi'
+import { Link, useParams, useHistory } from 'umi'
 
 import { formLayout } from "@/config/antd"
 import t from '@/utils/t'
@@ -25,6 +25,7 @@ const TYPES = Object.freeze({
 
 
 const Add = ({ getInternalDataset, createDataset }) => {
+  const history = useHistory()
   const { id } = useParams()
   const types = [
     { id: TYPES.INTERNAL, label: t('dataset.add.types.internal') },
