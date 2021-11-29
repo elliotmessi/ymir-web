@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "dva"
-import { Select, Input, Card, Button, Form, Row, Col, Checkbox, ConfigProvider, Space, } from "antd"
+import { Select, Input, Card, Button, Form, Row, Col, Checkbox, ConfigProvider, Space, Radio, } from "antd"
 import styles from "./index.less"
 import commonStyles from "../common.less"
 import { formLayout } from "@/config/antd"
@@ -37,7 +37,7 @@ function Label({ getDatasets, keywords, createLabelTask, getKeywords }) {
   }, [])
 
   useEffect(() => {
-    getKeywords()
+    getKeywords({ limit: 100000 })
   }, [])
 
   const onFinish = async (values) => {
@@ -164,27 +164,40 @@ function Label({ getDatasets, keywords, createLabelTask, getKeywords }) {
             >
               <Select mode="multiple" showArrow>
                 {keywords.map(keyword => (
-                  <Option key={keyword} value={keyword}>
-                    {keyword}
+                  <Option key={keyword} value={keyword.name}>
+                    <Row>
+                      <Col flex={1}>{keyword.name}</Col>
+                      {keyword.aliases && keyword.aliases.length ? <Col>Aliases: {keyword?.aliases}</Col> : null}
+                    </Row>
                   </Option>
                 ))}
               </Select>
             </Form.Item>
+            {/* next version */}
+            {/* <Form.Item
+              label={t('task.label.form.label.label')}
+              name='with_labels'
+            >
+              <Radio.Group options={[
+                { value: 1, label: t('task.mining.form.label.yes')},
+                {value: 0, label: t('task.mining.form.label.no')}, 
+              ]} defaultValue={0} />
+            </Form.Item> */}
             <Form.Item label={t('task.label.form.desc.label')}>
               <Uploader onChange={(result) => { setDoc(result) }} format="doc" max={50} info={t('task.label.form.desc.info', { br: <br /> })}></Uploader>
             </Form.Item>
             <Form.Item wrapperCol={{ offset: 4 }}>
               <Space size={20}>
-              <Form.Item name='submitBtn' noStyle>
-                <Button type="primary" size="large" htmlType="submit">
-                  {t('task.filter.create')}
-                </Button>
-              </Form.Item>
-              <Form.Item name='backBtn' noStyle>
-                <Button size="large" onClick={() => history.goBack()}>
-                  {t('task.btn.back')}
-                </Button>
-              </Form.Item>
+                <Form.Item name='submitBtn' noStyle>
+                  <Button type="primary" size="large" htmlType="submit">
+                    {t('task.filter.create')}
+                  </Button>
+                </Form.Item>
+                <Form.Item name='backBtn' noStyle>
+                  <Button size="large" onClick={() => history.goBack()}>
+                    {t('task.btn.back')}
+                  </Button>
+                </Form.Item>
               </Space>
               <div className={styles.bottomTip}>{t('task.label.bottomtip', { link: <Link target='_blank' to={'/lsf/'}>{t('task.label.bottomtip.link.label')}</Link> })}</div>
             </Form.Item>
@@ -211,7 +224,7 @@ const dis = (dispatch) => {
     },
     getKeywords(payload) {
       return dispatch({
-        type: 'common/getKeywords',
+        type: 'keyword/getKeywords',
         payload,
       })
     },
@@ -220,7 +233,7 @@ const dis = (dispatch) => {
 
 const stat = (state) => {
   return {
-    keywords: state.common.keywords,
+    keywords: state.keyword.keywords.items,
   }
 }
 
