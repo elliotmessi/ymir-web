@@ -24,7 +24,7 @@ const TYPES = Object.freeze({
 })
 
 
-const Add = ({ cancel = () => { }, ok = () => { }, getInternalDataset, createDataset }) => {
+const Add = ({ getInternalDataset, createDataset }) => {
   const { id } = useParams()
   const types = [
     { id: TYPES.INTERNAL, label: t('dataset.add.types.internal') },
@@ -86,11 +86,6 @@ const Add = ({ cancel = () => { }, ok = () => { }, getInternalDataset, createDat
     return currentType === type
   }
 
-  const close = () => {
-    setShow(false)
-    cancel()
-  }
-
   async function submit(values) {
     if (currentType === TYPES.LOCAL && !fileToken) {
       return message.error('Please upload local file')
@@ -105,9 +100,7 @@ const Add = ({ cancel = () => { }, ok = () => { }, getInternalDataset, createDat
     const result = await createDataset(params)
     if (result) {
       message.success(t('dataset.add.success.msg'))
-      form.resetFields()
-      close()
-      ok()
+      history.push('/home/dataset')
     }
   }
 
